@@ -37,7 +37,9 @@ loginurl = "http://reliancebroadband.co.in/reliance/startportal_isg.do"
 statusurl = "http://reliancebroadband.co.in/reliance/startportal_isg.do"
 #statusurl = "http://reliancebroadband.co.in/reliance/sessionStatus.do"
 
-f = open('log', 'a')
+f = None
+if enable_logging:
+    f = open('log', 'a')
 
 def log(message):
     if (not enable_logging):
