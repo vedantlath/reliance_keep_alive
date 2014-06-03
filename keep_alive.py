@@ -37,14 +37,12 @@ loginurl = "http://reliancebroadband.co.in/reliance/startportal_isg.do"
 statusurl = "http://reliancebroadband.co.in/reliance/startportal_isg.do"
 #statusurl = "http://reliancebroadband.co.in/reliance/sessionStatus.do"
 
+f = open('log', 'a')
+
 def log(message):
     if (not enable_logging):
         return
-
-    f = open('log3', 'a')
     f.write(str(datetime.datetime.now()) + ": " + message + "\n")
-    f.flush()
-    f.close()
 
 def log_response(response, responsestring):
     if (not enable_logging):
@@ -53,12 +51,7 @@ def log_response(response, responsestring):
     responseurl = response.geturl()
     responsecode = response.getcode()
     responseinfo = response.info()
-
-    f = open('log3', 'a')
     f.write(str(datetime.datetime.now()) + ": Response received: " + str(responseurl) + " " + str(responsecode) + "\n" + str(responseinfo) + "\n\n" + responsestring + "\n")
-#    f.flush()
-    f.close()
-
     return responsestring
 
 def login():
@@ -73,10 +66,10 @@ def login():
         responsestring = str(response.read(), 'utf-8')
         log_response(response, responsestring)
         if (responsestring.find("logout") > -1):
-			#log("login request successful")
+            log("login request successful")
             return True
         else:
-			#log("login request failed")
+            log("login request failed")
             return False
     except urllib.error.URLError as strerror:
         log("login request failed, " + str(strerror))
@@ -92,10 +85,10 @@ def status():
         responsestring = str(response.read(), 'utf-8')
         log_response(response, responsestring)
         if (responsestring.find("logout") > -1):
-			#log("we are not logged in")
+            log("we are not logged in")
             return True
         else:
-			#log("we are logged in")
+            log("we are logged in")
             return False
     except urllib.error.URLError as strerror:
         log("login request failed, " + str(strerror))
