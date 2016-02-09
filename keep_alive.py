@@ -47,13 +47,10 @@ def log(message):
     f.write(str(datetime.datetime.now()) + ": " + message + "\n")
 
 def log_response(response, responsestring):
-    if (not enable_logging):
-        return
-
     responseurl = response.geturl()
     responsecode = response.getcode()
     responseinfo = response.info()
-    f.write(str(datetime.datetime.now()) + ": Response received: " + str(responseurl) + " " + str(responsecode) + "\n" + str(responseinfo) + "\n\n" + responsestring + "\n")
+    log("Response received: " + str(responseurl) + " " + str(responsecode) + "\n" + str(responseinfo) + "\n\n" + responsestring)
     return responsestring
 
 def login():
