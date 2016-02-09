@@ -30,9 +30,9 @@ password = "password"
 
 # check if we are logged out every 10 seconds
 check_interval = 10
+enable_logging = False
 
 # don't edit anything below this line
-enable_logging = False
 loginurl = "http://reliancebroadband.co.in/reliance/startportal_isg.do"
 statusurl = "http://reliancebroadband.co.in/reliance/startportal_isg.do"
 #statusurl = "http://reliancebroadband.co.in/reliance/sessionStatus.do"
@@ -95,6 +95,7 @@ def status():
 #        log("unexpected error, " + sys.exc_info().__str__())
 
 
+log("script started")
 while True:
     print("getting session status")
     is_logged_in = status()
