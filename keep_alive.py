@@ -61,7 +61,7 @@ def login():
 
     responsestring = ""
     try:
-        response = urllib.request.urlopen(loginurl, data=postdata, timeout=300)
+        response = urllib.request.urlopen(loginurl, data=postdata, timeout=2)
         responsestring = str(response.read(), 'utf-8')
         log_response(response, responsestring)
         if (responsestring.find("logout") > -1):
@@ -80,7 +80,7 @@ def status():
 
     responsestring = ""
     try:
-        response = urllib.request.urlopen(statusurl, timeout=300)
+        response = urllib.request.urlopen(statusurl, timeout=2)
         responsestring = str(response.read(), 'utf-8')
         log_response(response, responsestring)
         if (responsestring.find("logout") > -1):
