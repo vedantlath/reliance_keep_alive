@@ -20,6 +20,7 @@
 """
 
 import urllib.request, urllib.parse, urllib.error
+import socket
 import datetime
 import sys
 import time
@@ -72,6 +73,8 @@ def login():
             return False
     except urllib.error.URLError as strerror:
         log("login request failed, " + str(strerror))
+    except socket.timeout as strerror:
+        log("request timed out, " + str(strerror))
 #    except:
 #        log("unexpected error, " + sys.exc_info().__str__())
 
@@ -91,6 +94,8 @@ def status():
             return False
     except urllib.error.URLError as strerror:
         log("login request failed, " + str(strerror))
+    except socket.timeout as strerror:
+        log("request timed out, " + str(strerror))
 #    except:
 #        log("unexpected error, " + sys.exc_info().__str__())
 
